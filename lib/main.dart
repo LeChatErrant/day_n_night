@@ -1,3 +1,4 @@
+import 'package:day_n_night/components/FreeCircularSlider.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -28,14 +29,16 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.blueAccent,
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'Welcome',
-            ),
-          ],
+      body: FreeCircularSlider(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                'Welcome',
+              ),
+            ],
+          ),
         ),
       ),
     );

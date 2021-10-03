@@ -30,9 +30,13 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       backgroundColor: Colors.blueAccent,
       body: FreeCircularSlider(
-        initialChildSize: 30,
-        initialChildOpacity: 0.7,
-        initialChild: Container(
+        centralChild: Container(
+          decoration: BoxDecoration(
+            color: Colors.grey,
+            shape: BoxShape.circle,
+          ),
+        ),
+        draggedChild: Container(
           decoration: BoxDecoration(
             color: Colors.grey,
             shape: BoxShape.circle,

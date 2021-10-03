@@ -1,5 +1,7 @@
 import 'package:day_n_night/components/FreeCircularSlider.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 
 void main() {
   runApp(MyApp());
@@ -25,11 +27,27 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  DateTime time = DateTime.now();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blueAccent,
+      backgroundColor: Colors.black,
       body: FreeCircularSlider(
+        minValue: 0,
+        maxValue: 1440,
+        onUpdate: (value) {
+          setState(() {
+            final now = DateTime.now();
+            this.time = DateTime(
+              now.year,
+              now.month,
+              now.day,
+              (value / 60).floor(),
+              (value % 60).floor(),
+            );
+          });
+        },
         centralChild: Container(
           decoration: BoxDecoration(
             color: Colors.grey,
@@ -47,7 +65,11 @@ class _MyHomePageState extends State<MyHomePage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(
-                'Welcome',
+                DateFormat('HH : mm').format(this.time),
+                style: GoogleFonts.rubik(
+                  color: Colors.white,
+                  fontSize: 30
+                ),
               ),
             ],
           ),

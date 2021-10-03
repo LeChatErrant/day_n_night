@@ -1,4 +1,7 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:vector_math/vector_math.dart';
 
 class FreeCircularSlider extends StatefulWidget {
   const FreeCircularSlider({
@@ -10,6 +13,9 @@ class FreeCircularSlider extends StatefulWidget {
     required this.draggedChild,
     this.draggedChildSize = 25,
     this.draggedChildOpacity = 0.6,
+    required this.minValue,
+    required this.maxValue,
+    required this.onUpdate,
   }) : super(key: key);
 
   @override
@@ -22,6 +28,9 @@ class FreeCircularSlider extends StatefulWidget {
   final Widget draggedChild;
   final double draggedChildSize;
   final double draggedChildOpacity;
+  final double minValue;
+  final double maxValue;
+  final void Function(double value) onUpdate;
 }
 
 class _FreeCircularSliderState extends State<FreeCircularSlider> {
@@ -75,6 +84,18 @@ class _FreeCircularSliderState extends State<FreeCircularSlider> {
         setState(() {
           touchPosition = details.localPosition;
         });
+        final a = this.initialTouchPosition;
+        final b = this.touchPosition;
+        if (a != null && b != null) {
+          double cosAngle = (a.dy - b.dy) / sqrt(pow(a.dx - b.dx, 2) + pow(a.dy - b.dy, 2));
+          double radAngle = acos(cosAngle);
+          double angle = degrees(radAngle);
+          if (b.dx - a.dx < 0) {
+            angle = 360 - angle;
+          }
+          double value = widget.minValue + (angle / 360.0) * widget.maxValue;
+          widget.onUpdate(value);
+        }
       },
       onPanEnd: (details) {
         setState(() {

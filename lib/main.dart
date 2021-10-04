@@ -31,6 +31,14 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    List<Color> colors = [
+      Color(0xFF8C2480),
+      Color(0xFFCE587D),
+      Color(0xFFFF9485),
+      Color(0xFFFF9D80),
+    ];
+
+
     return Scaffold(
       backgroundColor: Colors.black,
       body: FreeCircularSlider(
@@ -60,18 +68,23 @@ class _MyHomePageState extends State<MyHomePage> {
             shape: BoxShape.circle,
           ),
         ),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text(
-                DateFormat('HH : mm').format(this.time),
-                style: GoogleFonts.rubik(
-                  color: Colors.white,
-                  fontSize: 30
-                ),
+        child: AnimatedContainer(
+          duration: Duration(seconds: 2),
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: colors,
+            )
+          ),
+          child: Center(
+            child: Text(
+              DateFormat('HH : mm').format(this.time),
+              style: GoogleFonts.rubik(
+                color: Colors.white,
+                fontSize: 30
               ),
-            ],
+            ),
           ),
         ),
       ),

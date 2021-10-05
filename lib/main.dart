@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:day_n_night/components/DynamicGradient.dart';
+import 'package:day_n_night/components/DynamicGradientContainer.dart';
 import 'package:day_n_night/components/FreeCircularSlider.dart';
 import 'package:day_n_night/components/Sun.dart';
 import 'package:flutter/material.dart';
@@ -85,11 +85,8 @@ class _MyHomePageState extends State<MyHomePage> {
             shape: BoxShape.circle,
           ),
         ),
-        child: AnimatedContainer(
-          duration: Duration(seconds: 2),
-          decoration: BoxDecoration(
-            gradient: DynamicGradient(time: this.time)
-          ),
+        child: DynamicGradientContainer(
+          time: this.time,
           child: Stack(
             alignment: Alignment.center,
             children: [
@@ -115,7 +112,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               Sun(
                 delta: 10,
-                seconds: 2,
+                seconds: 3,
                 bottomPosition: getSunPosition(),
                 size: 125,
               ),

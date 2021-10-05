@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
       title: 'Day\'n\'night',
       theme: ThemeData(),
       home: MyHomePage(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }

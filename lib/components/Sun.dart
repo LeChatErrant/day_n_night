@@ -5,7 +5,7 @@ class Sun extends StatefulWidget {
   const Sun({
     Key? key,
     required this.seconds,
-    required this.delta,
+    this.delta = 0,
     required this.size,
     required this.bottomPosition,
   }) : super(key: key);
@@ -55,11 +55,20 @@ class _SunState extends State<Sun> {
       bottom: this.height,
       duration: Duration(milliseconds: (widget.seconds * 1000).floor()),
       curve: Curves.easeInOut,
-      child: SvgPicture.asset(
-        'assets/images/sun.svg',
-        fit: BoxFit.scaleDown,
-        height: widget.size,
+      child: Container(
         width: widget.size,
+        height: widget.size,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: Colors.yellow,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.orange,
+              blurRadius: 100,
+              spreadRadius: 50,
+            )
+          ],
+        ),
       ),
     );
   }

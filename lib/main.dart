@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:day_n_night/components/DynamicGradient.dart';
 import 'package:day_n_night/components/FreeCircularSlider.dart';
 import 'package:day_n_night/components/Sun.dart';
@@ -33,21 +35,27 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   DateTime time = DateTime.now();
 
+  final double minSunPosition = -200;
+  final double maxSunPosition = 250;
+
+  // Used to get a % of how advanced the time is in the day
+  // 0% is midnight, 100% is midday
+  double getTimeRatio() {
+    // 0 is 00:00, 2 is 24:00
+    double fullDayRatio = (this.time.hour * 60 + this.time.minute) / (60 * 12);
+    // 00:00 is 0, 06:00 is 0.5, 12:00 is 1, 18:00 is 0.5, 24:00 is 00
+    double timeRatio = min(fullDayRatio, 1) - max(fullDayRatio - 1, 0);
+    return timeRatio;
+  }
+
+  // Sun position is calculated between two points depending on timeRation
+  double getSunPosition() {
+    double sunPosition = minSunPosition + (maxSunPosition - minSunPosition) * getTimeRatio();
+    return sunPosition;
+  }
+
   @override
   Widget build(BuildContext context) {
-    List<Color> colors = [
-      Color(0xFF8C2480),
-      Color(0xFFCE587D),
-      Color(0xFFFF9485),
-      Color(0xFFFF9D80),
-    ];
-
-    List<Color> testColors = [
-      Color(0xFF0D1441),
-      Color(0xFF283584),
-      Color(0xFF376AB2),
-    ];
-
     return Scaffold(
       backgroundColor: Colors.black,
       body: FreeCircularSlider(
@@ -106,10 +114,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
               Sun(
-                delta: 25,
-                seconds: 3,
-                bottomPosition: -100,
-                size: MediaQuery.of(context).size.width,
+                delta: 10,
+                seconds: 2,
+                bottomPosition: getSunPosition(),
+                size: 125,
               ),
               Land(),
             ],

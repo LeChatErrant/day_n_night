@@ -4,7 +4,7 @@ class DynamicGradient extends LinearGradient {
   DynamicGradient({
     required this.time,
   }) : super(
-    colors: DynamicGradient.gradients[time.hour % 2],
+    colors: DynamicGradient.gradients[time.hour % 1],
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
   );

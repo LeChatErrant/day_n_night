@@ -1,3 +1,4 @@
+import 'package:day_n_night/components/DynamicGradient.dart';
 import 'package:day_n_night/components/FreeCircularSlider.dart';
 import 'package:day_n_night/components/Sun.dart';
 import 'package:flutter/material.dart';
@@ -38,9 +39,14 @@ class _MyHomePageState extends State<MyHomePage> {
       Color(0xFF8C2480),
       Color(0xFFCE587D),
       Color(0xFFFF9485),
-//      Color(0xFFFF9D80),
+      Color(0xFFFF9D80),
     ];
 
+    List<Color> testColors = [
+      Color(0xFF0D1441),
+      Color(0xFF283584),
+      Color(0xFF376AB2),
+    ];
 
     return Scaffold(
       backgroundColor: Colors.black,
@@ -74,11 +80,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: AnimatedContainer(
           duration: Duration(seconds: 2),
           decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: colors,
-            )
+            gradient: DynamicGradient(time: this.time)
           ),
           child: Stack(
             alignment: Alignment.center,

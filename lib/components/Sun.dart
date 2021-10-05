@@ -26,9 +26,9 @@ class _SunState extends State<Sun> {
   void changePosition() {
     setState(() {
       if (up) {
-        height -= widget.delta;
+        height = widget.bottomPosition;
       } else {
-        height += widget.delta;
+        height = widget.bottomPosition + widget.delta;
       }
       up = !up;
     });
@@ -42,7 +42,10 @@ class _SunState extends State<Sun> {
   void initState() {
     super.initState();
     height = widget.bottomPosition;
-    changePosition();
+    Future.delayed(
+      Duration(milliseconds: (widget.seconds * 1000).floor()),
+      changePosition,
+    );
   }
 
 

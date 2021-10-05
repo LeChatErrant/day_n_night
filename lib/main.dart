@@ -1,4 +1,5 @@
 import 'package:day_n_night/components/FreeCircularSlider.dart';
+import 'package:day_n_night/components/Sun.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
@@ -35,7 +36,7 @@ class _MyHomePageState extends State<MyHomePage> {
       Color(0xFF8C2480),
       Color(0xFFCE587D),
       Color(0xFFFF9485),
-      Color(0xFFFF9D80),
+//      Color(0xFFFF9D80),
     ];
 
 
@@ -58,7 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
         },
         centralChild: Container(
           decoration: BoxDecoration(
-            color: Colors.grey,
+            color: Colors.grey.shade600,
             shape: BoxShape.circle,
           ),
         ),
@@ -77,14 +78,34 @@ class _MyHomePageState extends State<MyHomePage> {
               colors: colors,
             )
           ),
-          child: Center(
-            child: Text(
-              DateFormat('HH : mm').format(this.time),
-              style: GoogleFonts.rubik(
-                color: Colors.white,
-                fontSize: 30
+          child: Stack(
+            children: [
+              Column(
+                children: [
+                  Flexible(
+                    flex: 1,
+                    child: Center(
+                      child: Text(
+                        DateFormat('HH : mm').format(this.time),
+                        style: GoogleFonts.rubik(
+                          color: Colors.white,
+                          fontSize: 30
+                        ),
+                      ),
+                    ),
+                  ),
+                  Flexible(
+                    flex: 2,
+                    child: Container(),
+                  ),
+                ],
               ),
-            ),
+              Sun(
+                delta: 25,
+                seconds: 3,
+                size: MediaQuery.of(context).size.width,
+              ),
+            ],
           ),
         ),
       ),

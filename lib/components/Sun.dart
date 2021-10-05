@@ -63,7 +63,7 @@ class _SunState extends State<Sun> {
           color: Colors.yellow,
           boxShadow: [
             BoxShadow(
-              color: Colors.orange,
+              color: Colors.yellow,
               blurRadius: 100,  // Soften the shadow
               spreadRadius: 50, // Extend the shadow
             )

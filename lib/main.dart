@@ -75,7 +75,9 @@ class _MyHomePageState extends State<MyHomePage> {
         },
         centralChild: Container(
           decoration: BoxDecoration(
-            color: Colors.grey.shade600,
+            gradient: RadialGradient(
+              colors: [Colors.black, Colors.grey]
+            ),
             shape: BoxShape.circle,
           ),
         ),

@@ -7,6 +7,7 @@ class Sun extends StatefulWidget {
     required this.seconds,
     required this.delta,
     required this.size,
+    required this.bottomPosition,
   }) : super(key: key);
 
   @override
@@ -15,10 +16,11 @@ class Sun extends StatefulWidget {
   final double seconds;
   final double delta;
   final double size;
+  final double bottomPosition;
 }
 
 class _SunState extends State<Sun> {
-  double height = -150;
+  late double height;
   bool up = false;
 
   void changePosition() {
@@ -39,16 +41,15 @@ class _SunState extends State<Sun> {
   @override
   void initState() {
     super.initState();
+    height = widget.bottomPosition;
     changePosition();
   }
 
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
     return AnimatedPositioned(
       bottom: this.height,
-      left: screenWidth / 2 - widget.size / 2,
       duration: Duration(milliseconds: (widget.seconds * 1000).floor()),
       curve: Curves.easeInOut,
       child: SvgPicture.asset(

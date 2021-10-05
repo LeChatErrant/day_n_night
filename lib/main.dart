@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
+import 'components/Land.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -79,6 +81,7 @@ class _MyHomePageState extends State<MyHomePage> {
             )
           ),
           child: Stack(
+            alignment: Alignment.center,
             children: [
               Column(
                 children: [
@@ -103,8 +106,10 @@ class _MyHomePageState extends State<MyHomePage> {
               Sun(
                 delta: 25,
                 seconds: 3,
+                bottomPosition: -100,
                 size: MediaQuery.of(context).size.width,
               ),
+              Land(),
             ],
           ),
         ),

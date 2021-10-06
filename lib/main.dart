@@ -114,8 +114,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
               Sun(
-//                delta: 10,
-                seconds: 1,
+                delta: 10,
+                seconds: 3,
                 bottomPosition: getSunPosition(),
                 size: 125,
               ),

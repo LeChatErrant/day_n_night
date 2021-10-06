@@ -35,6 +35,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   DateTime time = DateTime.now();
+  bool isDragging = false;
 
   final double minSunPosition = -200;
   final double maxSunPosition = 250;
@@ -62,6 +63,16 @@ class _MyHomePageState extends State<MyHomePage> {
       body: FreeCircularSlider(
         minValue: 0,
         maxValue: 1440,
+        onDragStart: () {
+          setState(() {
+            this.isDragging = true;
+          });
+        },
+        onDragEnd: () {
+          setState(() {
+            this.isDragging = false;
+          });
+        },
         onUpdate: (value) {
           setState(() {
             final now = DateTime.now();
@@ -114,8 +125,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
               Sun(
-                delta: 10,
-                seconds: 3,
+                delta: isDragging ? 0 : 10,
+                seconds: isDragging ? 1 : 3,
                 bottomPosition: getSunPosition(),
                 size: 125,
               ),

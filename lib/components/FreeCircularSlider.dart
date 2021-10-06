@@ -16,6 +16,8 @@ class FreeCircularSlider extends StatefulWidget {
     required this.minValue,
     required this.maxValue,
     required this.onUpdate,
+    this.onDragStart,
+    this.onDragEnd,
   }) : super(key: key);
 
   @override
@@ -31,6 +33,8 @@ class FreeCircularSlider extends StatefulWidget {
   final double minValue;
   final double maxValue;
   final void Function(double value) onUpdate;
+  final void Function()? onDragStart;
+  final void Function()? onDragEnd;
 }
 
 class _FreeCircularSliderState extends State<FreeCircularSlider> {
@@ -79,6 +83,9 @@ class _FreeCircularSliderState extends State<FreeCircularSlider> {
         setState(() {
           initialTouchPosition = details.localPosition;
         });
+        if (widget.onDragStart != null) {
+          widget.onDragStart!();
+        }
       },
       onPanUpdate: (details) {
         setState(() {
@@ -102,6 +109,9 @@ class _FreeCircularSliderState extends State<FreeCircularSlider> {
           initialTouchPosition = null;
           touchPosition = null;
         });
+        if (widget.onDragEnd != null) {
+          widget.onDragEnd!();
+        }
       },
       child: Stack(
         children: [

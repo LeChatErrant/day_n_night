@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class Sun extends StatefulWidget {
   const Sun({
@@ -47,7 +46,6 @@ class _SunState extends State<Sun> {
       changePosition,
     );
   }
-
 
   @override
   Widget build(BuildContext context) {

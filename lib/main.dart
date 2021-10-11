@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math';
 
 import 'package:day_n_night/components/DynamicGradientContainer.dart';
@@ -40,7 +41,20 @@ class _MyHomePageState extends State<MyHomePage> {
   final double minSunPosition = -200;
   final double maxSunPosition = 250;
 
-  // Used to get a % of how advanced the time is in the day
+  @override
+  void initState() {
+    super.initState();
+    Timer.periodic(
+      Duration(seconds: 1),
+      (timer) {
+        setState(() {
+          this.time = DateTime.now();
+        });
+      },
+    );
+  }
+
+    // Used to get a % of how advanced the time is in the day
   // 0% is midnight, 100% is midday
   double getTimeRatio() {
     // 0 is 00:00, 2 is 24:00

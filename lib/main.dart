@@ -47,9 +47,11 @@ class _MyHomePageState extends State<MyHomePage> {
     Timer.periodic(
       Duration(seconds: 1),
       (timer) {
-        setState(() {
-          this.time = DateTime.now();
-        });
+        if (!isDragging) {
+          setState(() {
+            this.time = DateTime.now();
+          });
+        }
       },
     );
   }

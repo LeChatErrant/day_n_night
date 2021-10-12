@@ -4,11 +4,9 @@
 
 It changes depending the **time of the day**
 
-## Demonstration
-
 > Here is what the project looks like at this time
 
-![Demo](https://github.com/LeChatErrant/day_n_night/blob/master/.github/assets/demo.mp4)
+https://user-images.githubusercontent.com/36965544/137001242-89356fdb-50fc-423c-aedd-e62cce4f8785.mp4
 
 ## WIP
 

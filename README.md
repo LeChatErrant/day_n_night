@@ -8,7 +8,7 @@ It changes depending the **time of the day**
 
 > Here is what the project looks like at this time
 
-![Demo](https://drive.google.com/file/d/16c3TMs9FyroVB7mRHpxvwC8uSnW9fl8-/view?usp=sharing)
+![Demo](https://drive.google.com/file/d/16c3TMs9FyroVB7mRHpxvwC8uSnW9fl8-/view)
 
 ## WIP
 

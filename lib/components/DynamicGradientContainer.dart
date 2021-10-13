@@ -2,22 +2,16 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-class DynamicGradientContainer extends StatefulWidget {
+class DynamicGradientContainer extends StatelessWidget {
   const DynamicGradientContainer({
     Key? key,
     required this.child,
     required this.time
   }) : super(key: key);
 
-  @override
-  _DynamicGradientContainerState createState() => _DynamicGradientContainerState();
-
   final Widget child;
   final DateTime time;
-}
-
-class _DynamicGradientContainerState extends State<DynamicGradientContainer> {
-  final List<List<Color>> gradients = [
+  static final List<List<Color>> gradients = [
     // 00:00
     [
       Color.fromRGBO(0, 0, 30, 1),
@@ -118,20 +112,31 @@ class _DynamicGradientContainerState extends State<DynamicGradientContainer> {
     ],
   ];
 
+  static List<Color> getGradient(DateTime time) {
+    final hour = time.hour;
+    final gradient = min(hour, 12) - max(hour - 12, 0);
+    return gradients[gradient.floor()];
+  }
+
+  static double getMeanLuminance(DateTime time) {
+    final colors = getGradient(time);
+    return colors
+        .map((color) => color.computeLuminance())
+        .reduce((value, element) => value + element) / colors.length;
+  }
+
   @override
   Widget build(BuildContext context) {
-    final hour = widget.time.hour;
-    final gradient = min(hour, 12) - max(hour - 12, 0);
     return AnimatedContainer(
       duration: Duration(seconds: 1),
       decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: this.gradients[gradient.floor()],
+            colors: DynamicGradientContainer.getGradient(this.time),
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           )
       ),
-      child: widget.child,
+      child: this.child,
     );
   }
 }

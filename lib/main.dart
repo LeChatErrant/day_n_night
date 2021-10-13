@@ -128,7 +128,7 @@ class _MyHomePageState extends State<MyHomePage> {
               Sun(
                 delta: isDragging ? 0 : 10,
                 seconds: isDragging ? 1 : 3,
-                bottomPosition: getSunPosition(),
+                verticalPosition: getSunPosition(),
                 size: 125,
               ),
               Land(),

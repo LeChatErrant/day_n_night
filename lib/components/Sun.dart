@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 class Sun extends StatefulWidget {
@@ -6,52 +8,48 @@ class Sun extends StatefulWidget {
     required this.seconds,
     this.delta = 0,
     required this.size,
-    required this.bottomPosition,
+    required this.verticalPosition,
   }) : super(key: key);
 
   @override
-  _SunState createState() => _SunState();
+  _SunState createState() => _SunState(height: this.verticalPosition);
 
   final double seconds;
   final double delta;
   final double size;
-  final double bottomPosition;
+  final double verticalPosition;
 }
 
 class _SunState extends State<Sun> {
-  late double height;
+  double height;
   bool up = false;
+
+  _SunState({required this.height});
 
   void changePosition() {
     setState(() {
       if (up) {
-        height = widget.bottomPosition;
+        height = widget.verticalPosition - widget.delta / 2;
       } else {
-        height = widget.bottomPosition + widget.delta;
+        height = widget.verticalPosition + widget.delta / 2;
       }
       up = !up;
     });
-    Future.delayed(
-      Duration(milliseconds: (widget.seconds * 1000).floor()),
-      changePosition,
-    );
   }
 
   @override
   void initState() {
+    final ms = (widget.seconds * 1000).floor();
+    Timer.periodic(Duration(milliseconds: ms), (timer) => changePosition());
     super.initState();
-    height = widget.bottomPosition;
-    Future.delayed(
-      Duration(milliseconds: (widget.seconds * 1000).floor()),
-      changePosition,
-    );
   }
 
   @override
   Widget build(BuildContext context) {
+    final ms = (widget.seconds * 1000).floor();
     return AnimatedPositioned(
       bottom: this.height,
-      duration: Duration(milliseconds: (widget.seconds * 1000).floor()),
+      duration: Duration(milliseconds: ms),
       curve: Curves.easeInOut,
       child: Container(
         width: widget.size,

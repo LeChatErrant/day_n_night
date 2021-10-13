@@ -8,7 +8,7 @@ class Land extends StatelessWidget {
     return Positioned(
       bottom: -70,
       child: Image.asset(
-        'assets/images/land_light.png',
+        'assets/images/land.png',
         fit: BoxFit.fitWidth,
         width: MediaQuery.of(context).size.width * 1.2,
       ),

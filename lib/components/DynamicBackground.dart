@@ -37,6 +37,14 @@ class DynamicBackground extends StatelessWidget {
     return sunPosition;
   }
 
+  static List<Color> getGradient(DateTime time) {
+    return DynamicGradientContainer.getGradient(time);
+  }
+
+  static double getMeanLuminance(DateTime time) {
+    return DynamicGradientContainer.getMeanLuminance(time);
+  }
+
   @override
   Widget build(BuildContext context) {
     return DynamicGradientContainer(

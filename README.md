@@ -14,7 +14,8 @@ Day 'n' night is still a **work in progress**, and will soon be released as a si
 
 ### Upcoming features
 
- - [ ] Publication as a reusable package
+ - [x] Wrap the dynamic background in a single reusable widget
+ - [ ] Publication on pub.dev
  - [ ] Particles floating on the background
  - [ ] Stars animation
  - [ ] Glowing effect on the sun

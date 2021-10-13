@@ -23,6 +23,7 @@ class Sun extends StatefulWidget {
 class _SunState extends State<Sun> {
   double height;
   bool up = false;
+  late Timer timer;
 
   _SunState({required this.height});
 
@@ -40,8 +41,14 @@ class _SunState extends State<Sun> {
   @override
   void initState() {
     final ms = (widget.seconds * 1000).floor();
-    Timer.periodic(Duration(milliseconds: ms), (timer) => changePosition());
+    this.timer = Timer.periodic(Duration(milliseconds: ms), (timer) => changePosition());
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    this.timer.cancel();
+    super.dispose();
   }
 
   @override

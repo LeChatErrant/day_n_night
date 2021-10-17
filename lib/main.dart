@@ -1,18 +1,9 @@
-import 'dart:async';
-import 'dart:math';
-
 import 'package:day_n_night/components/DynamicBackground.dart';
-import 'package:day_n_night/components/DynamicGradientContainer.dart';
 import 'package:day_n_night/components/demo/FreeCircularSlider.dart';
-import 'package:day_n_night/components/Sun.dart';
 import 'package:day_n_night/components/demo/FullPageTimeDisplay.dart';
 import 'package:day_n_night/components/demo/MediumTouchIndicator.dart';
 import 'package:day_n_night/components/demo/SmallTouchIndicator.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:intl/intl.dart';
-
-import 'components/Land.dart';
 
 void main() {
   runApp(MyApp());

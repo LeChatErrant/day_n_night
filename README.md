@@ -8,7 +8,7 @@ It changes depending the **time of the day**
 
 https://user-images.githubusercontent.com/36965544/137001242-89356fdb-50fc-423c-aedd-e62cce4f8785.mp4
 
-> Here is what it looks integrated in an application
+**Here is what it looks integrated in a real application**
 
 ![Screenshot_20211020-212533](https://user-images.githubusercontent.com/36965544/139048524-fa1b71d2-ceaf-4520-8fa1-496eba8fbb07.jpg)
 
